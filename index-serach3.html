@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .fp{
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: gainsboro;
+        }
+        .box{
+            width: 600px;
+            /* height: 700px; */
+            border: 1px solid black;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .box>input{
+            width: 100%;
+            height: 50px;
+            padding-left: 5px;
+            font-size: 18px;
+            border-radius: 5px;
+
+        }
+        .box>ul{
+            width: 100%;
+            
+        }
+        .box li{
+            width: 100%;
+            list-style-type: none;
+            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+            text-transform: capitalize;
+            font-size: 20px;
+            border-bottom: 1px solid black;
+            padding: 10px;
+            display: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="fp">
+        <div class="box">
+            <input id="inp" type="text" placeholder="search..." autofocus>
+            <ul>
+                <li data-name="vane">vane</li>
+                <li data-name="vahik">vahik</li>
+                <li data-name="deren">deren</li>
+                <li data-name="servin">servin</li>
+                <li data-name="gahik">gahik</li>
+                <li data-name="christ">christ</li>
+                <li data-name="erik">erik</li>
+                <li data-name="armen">armen</li>
+                <li data-name="arin">arin</li>
+                <li data-name="andre">andre</li>
+                <li data-name="tomik">tomik</li>
+                <li data-name="ervin">ervin</li>
+                <li data-name="pren">pren</li>
+                <li data-name="rima">rima</li>
+            </ul>
+
+        </div>
+    </div>
+</body>
+<script>
+    let _li = document.querySelectorAll('ul>li')
+    document.getElementById('inp').addEventListener('input',(e)=>{
+        self = e.target.value
+        if(self ==null || self ==''){
+            _li.forEach(function(val){
+                val.style.display='none'
+            })
+        }else{
+            _li.forEach(function(val){
+            val.style.display='none'
+            mine = val.getAttribute('data-name')
+            search = mine.substring(0,self.length)
+            if(
+                search == self
+            ){
+                val.style.display='block'
+                val.innerHTML='<strong>'+search+'</strong>'+mine.substring(self.length,mine.length)
+            }
+        })
+        }
+         _li.forEach(function(val){
+            val.addEventListener('click',function(){
+                document.getElementById('inp').value=val.getAttribute('data-name')
+                _li.forEach(function(val){
+                    val.style.display='none'
+                })
+            })
+         })
+ 
+       
+
+    })
+
+
+
+
+</script>
+</html>
